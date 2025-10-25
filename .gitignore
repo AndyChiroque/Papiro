@@ -1,0 +1,76 @@
+# -------------------------------------------------------------------------- #
+# Archivos de configuración y entornos sensibles (MUY IMPORTANTE)
+# -------------------------------------------------------------------------- #
+# Archivo de configuración de la base de datos o credenciales
+# Es vital que NO subas tus credenciales de base de datos a un repositorio público.
+# Generalmente, estos archivos tienen nombres como:
+# config.php
+# database.php
+# .env (si usas Dotenv para variables de entorno)
+# Renombra o asegúrate de que tu archivo de configuración REAL NO esté aquí si tiene credenciales.
+# Ejemplo: si tienes un archivo "config_db.php" con la contraseña, agrégalo.
+# O, si usas un .env para gestionar credenciales, como es común:
+/.env
+/app/config/database.php # Si tus credenciales están aquí
+/app/libs/config.php # Ajusta según donde guardes tus credenciales
+
+
+# -------------------------------------------------------------------------- #
+# Directorios y archivos generados por PHP o el entorno de desarrollo
+# -------------------------------------------------------------------------- #
+# Dependencias de Composer (si las usas)
+/vendor/
+
+# Archivos de caché de PHP (si tu framework o librerías los generan)
+/cache/
+/tmp/
+/log/
+
+# Archivos de sesión
+/sessions/
+
+# Archivos de subida de usuarios (uploads)
+# Si los usuarios pueden subir fotos o archivos, no deben estar en el repo.
+/public/uploads/
+/public/docs/uploads/ # Si tienes una carpeta de uploads dentro de docs
+
+# Archivos generados por IDEs y editores (Visual Studio Code, PhpStorm, Sublime Text, etc.)
+.idea/                 # PhpStorm, IntelliJ IDEA
+.vscode/               # Visual Studio Code
+*.sublime-project      # Sublime Text
+*.sublime-workspace    # Sublime Text
+.DS_Store              # Archivos de macOS
+Thumbs.db              # Archivos de Windows (miniaturas)
+*.log                  # Archivos de log
+*.sql.bak              # Backups de SQL (si se generan localmente)
+
+
+# -------------------------------------------------------------------------- #
+# Archivos de base de datos local (NO el schema, sino datos locales)
+# -------------------------------------------------------------------------- #
+# Si tienes un archivo .sqlite o un dump de tu base de datos local para pruebas,
+# NO lo subas, especialmente si contiene datos sensibles.
+*.sqlite
+*.db
+*.dump
+*.sql # Si este es un dump de tu base de datos local, no tu esquema inicial.
+      # Ten cuidado con esto: tu archivo `biblioteca.sql` es tu esquema.
+      # Solo agrega *.sql aquí si sabes que son dumps de datos, no el schema base.
+      # Por ahora, es probable que quieras que biblioteca.sql SÍ esté en el repo.
+
+# -------------------------------------------------------------------------- #
+# Archivos de prueba o configuración local
+# -------------------------------------------------------------------------- #
+phpunit.xml            # Configuración de PHPUnit (si tienes una específica local)
+phpunit.xml.dist       # A menudo se envía, pero si tienes tu propia copia local
+coverage/              # Reportes de cobertura de código
+.env.local             # Versiones locales de .env
+
+
+# -------------------------------------------------------------------------- #
+# Reglas específicas para tu estructura
+# -------------------------------------------------------------------------- #
+# Si tu "biblioteca.sql" es solo el esquema inicial de la BBDD, SÍ DEBE IR en Git.
+# Pero si a veces generas dumps de la BBDD con datos de prueba, podrías querer ignorarlos.
+# Por lo general, se ignora:
+# /app/sql/database_dump_local.sql
