@@ -19,7 +19,7 @@ class MySQLdb {
                 $this->usuario, 
                 $this->clave
             );
-            echo "Conexión exitosa a la base de datos.";
+            //echo "Conexión exitosa a la base de datos.";
         } catch (Exception $e) {
             die("Error de conexión: " . $e->getMessage());
         }

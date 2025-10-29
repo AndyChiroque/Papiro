@@ -1,4 +1,4 @@
 <?php
 require_once("../app/index.php");
-$control = new MySQLdb();
+$control = new Control();
 ?>
