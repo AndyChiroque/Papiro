@@ -1,3 +1,3 @@
 <?php
-print "Bienvenido a Papiro, Sistema de administracion de blibioteca. app b";
+require_once 'libs/MySQLdb.php';
 ?>
