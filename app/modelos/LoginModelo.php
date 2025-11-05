@@ -4,10 +4,9 @@
  */
 class LoginModelo{
 
-    private $db = ""
+    private $db = "";
     //code
-    function __construct()
-    {
+    function __construct(){
         //code
         $this->db = new MySQLdb();
     }
