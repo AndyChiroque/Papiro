@@ -17,10 +17,27 @@ class Login extends controlador{
         ];
         $this->vista("LoginCaratulaVista", $datos);
     }   
-    public function olvido(){
+    public function olvidoVerificar(){
+
+        $errores = [];
+        if ($_SERVER['REQUEST_METHOD']=="POST"){
+            $usuario = $_POST['usuario']??"";
+            if (empty($usuario)){
+                array_push($errores, "El campo usuario es obligatorio");
+            }
+            if (filter_var($usuario, FILTER_VALIDATE_EMAIL) === false){
+                array_push($errores, "El campo usuario debe ser un correo electrónico válido");
+            }
+            if (empty($errores)){
+            Helper::mostrar($usuario);
+            }
+            Helper::mostrarErrores($errores);
+        }
         $datos = [
-            "titulo" => "olvido de clave - Biblioteca",
-            "subtitulo" => "¿Olvidaste tu clave de acceso?"
+			"titulo" => "Olvido de contraseña",
+			"subtitulo" => "¿Olvidaste la contraseña?",
+			"errores" => $errores,
+			"data" => []
         ];
         $this->vista("loginOlvidoVista", $datos);
     }  

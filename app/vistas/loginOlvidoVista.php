@@ -2,8 +2,8 @@
                         <form action="<?php echo RUTA; ?>login/olvidoVerificar" method="post">
                             <h2 class="text-center">Login</h2>
                             <div class="form-group text-left">
-                                    <label for="correo">* Correo</label>
-                                    <input type="email" name="correo" id="correo" class="form-control" placeholder="Escribe tu Correo"/>
+                                    <label for="usuario">* Correo</label>
+                                    <input type="email" name="usuario" class="form-control" placeholder="Escribe tu Correo" required />
                             </div>   
                             <div class="form-group text-left">
                                     <input type="submit" value="Enviar" class="btn btn-primary"/>
