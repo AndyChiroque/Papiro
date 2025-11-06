@@ -11,8 +11,18 @@ class Login extends controlador{
         $this->modelo = $this->modelo("LoginModelo");
     }
     public function caratula(){
-        $datos = [];
+        $datos = [
+            "titulo" => "Sistema de Biblioteca - Login",
+            "subtitulo" => "Sistema de Biblioteca"
+        ];
         $this->vista("LoginCaratulaVista", $datos);
     }   
+    public function olvido(){
+        $datos = [
+            "titulo" => "olvido de clave - Biblioteca",
+            "subtitulo" => "¿Olvidaste tu clave de acceso?"
+        ];
+        $this->vista("loginOlvidoVista", $datos);
+    }  
 }
 ?>
