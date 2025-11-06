@@ -16,7 +16,7 @@
                             <div class="form-group text-left">
                                     <button class="btn btn-primary" type="submit">Enviar</button>
                             </div>
-                            <a href="login/olvido">¿Olvidaste tu clave de acceso?</a><br>
+                            <a href="<?php echo RUTA; ?>login/olvido">¿Olvidaste tu clave de acceso?</a><br>
                             <a href="#">¿No tienes cuenta? Regístrate</a>
                         </form>
 <?php include("piePagina.php"); ?>

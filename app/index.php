@@ -1,4 +1,5 @@
 <?php
+define("RUTA", "/Papiro/");
 require_once ('libs/MySQLdb.php');
 require_once ('libs/Helper.php');
 require_once ('libs/Controlador.php');
