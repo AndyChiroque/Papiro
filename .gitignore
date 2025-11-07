@@ -74,3 +74,4 @@ coverage/              # Reportes de cobertura de código
 # Pero si a veces generas dumps de la BBDD con datos de prueba, podrías querer ignorarlos.
 # Por lo general, se ignora:
 # /app/sql/database_dump_local.sql
+php-server.log
