@@ -1,6 +1,6 @@
 <?php include("encabezado.php"); ?>
                         <form action="<?php echo RUTA; ?>login/olvidoVerificar" method="post">
-                            <h2 class="text-center">Login</h2>
+                            <h2 class="text-center"> Login </h2>
                             <div class="form-group text-left">
                                     <label for="usuario">* Correo</label>
                                     <input type="email" name="usuario" class="form-control" placeholder="Escribe tu Correo" required />
