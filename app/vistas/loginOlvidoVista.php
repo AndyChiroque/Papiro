@@ -3,7 +3,7 @@
                             <h2 class="text-center"> Login </h2>
                             <div class="form-group text-left">
                                     <label for="usuario">* Correo</label>
-                                    <input type="email" name="usuario" class="form-control" placeholder="Escribe tu Correo" required />
+                                    <input type="text" name="usuario" class="form-control" placeholder="Escribe tu Correo" required />
                             </div>   
                             <div class="form-group text-left">
                                     <input type="submit" value="Enviar" class="btn btn-primary"/>
