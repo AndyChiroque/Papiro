@@ -30,6 +30,9 @@ class Login extends controlador{
             }
             if (empty($errores)){
             if ($this->modelo->buscarCorreo($usuario)){
+                if ($this->modelo->enviarCorreo($usuario)){
+                    helper::mostrar("Se ha enviado un correo para restablecer la contraseña", "alert alert-success");
+                }
                helper::mostrar("Se ha enviado un correo para restablecer la contraseña", "alert alert-success");
             } else {
                helper::mostrar("El correo electrónico no está registrado", "alert alert-danger");
