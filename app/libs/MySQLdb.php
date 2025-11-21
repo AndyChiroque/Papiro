@@ -24,5 +24,10 @@ class MySQLdb {
             die("Error de conexión: " . $e->getMessage());
         }
 }
+    public function query($sql=""){
+        if(empty($sql)) return false;
+        $stmt = $this->conn->query($sql);
+        return $stmt->fetch();
+    }
 }
 ?>

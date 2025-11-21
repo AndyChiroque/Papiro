@@ -29,9 +29,12 @@ class Login extends controlador{
                 array_push($errores, "El campo usuario debe ser un correo electrónico válido");
             }
             if (empty($errores)){
-            Helper::mostrar($usuario);
+            if ($this->modelo->buscarCorreo($usuario)){
+               helper::mostrar("Se ha enviado un correo para restablecer la contraseña", "alert alert-success");
+            } else {
+               helper::mostrar("El correo electrónico no está registrado", "alert alert-danger");
             }
-            Helper::mostrarErrores($errores);
+            }
         }
         $datos = [
 			"titulo" => "Olvido de contraseña",
