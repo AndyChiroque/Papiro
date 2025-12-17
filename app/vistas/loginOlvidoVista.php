@@ -5,7 +5,7 @@
                                     <label for="usuario">* Correo</label>
                                     <input type="text" name="usuario" class="form-control" placeholder="Escribe tu Correo" required />
                             </div>   
-                            <div class="form-group text-left">
+                            <div class="form-group text-left mt-2">
                                     <input type="submit" value="Enviar" class="btn btn-primary"/>
                                     <a href="<?php echo RUTA; ?>login/caratula" type="button" class="btn btn-info">Cancelar</a>
                             </div>

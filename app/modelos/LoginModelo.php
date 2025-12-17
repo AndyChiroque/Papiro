@@ -14,7 +14,7 @@ class LoginModelo
 	public function buscarCorreo($usuario='')
 	{
 		if(empty($usuario)) return false;
-		$sql = "SELECT * FROM usuarios WHERE correo='".$usuario."'";
+		$sql = "SELECT id , nombre, apellidoPaterno , apellidoMaterno FROM usuarios WHERE correo='".$usuario."'";
 		return $this->db->query($sql);
 	}
 
@@ -24,7 +24,7 @@ class LoginModelo
 		if ($email=="") {
 			return false;
 		} else {
-			$data = ["id"=>1]; //$this->validarCorreo($email);
+			$data = $this->buscarCorreo($email);
 			if (!empty($data)) {
 				$id = $data["id"];
 				//
