@@ -12,6 +12,16 @@ class Helper {
        if ($detener){
            exit;
        }
-    } 
+    }
+    public static function Encriptar($data)
+    {
+        return base64_encode(LLAVE1.$data.LLAVE2);
+    }
+    public static function Desencriptar($data)
+    {
+        $cadena = base64_decode($data);
+        $cadena = str_replace(LLAVE1,"",$cadena);
+        return str_replace(LLAVE2,"",$cadena);
+    }
 }
 ?>

@@ -26,7 +26,7 @@ class LoginModelo
 		} else {
 			$data = $this->buscarCorreo($email);
 			if (!empty($data)) {
-				$id = $data["id"];
+				$id = Helper::Encriptar($data["id"]);
 				//
 				$msg = "Entra a la siguiente liga para cambiar tu clave de acceso al sistema de biblioteca...<br>";
 				$msg.= "<a href='".RUTA."login/cambiarclave/".$id."'>Cambiar tu clave de acceso</a>";
@@ -37,9 +37,9 @@ class LoginModelo
 				$headers.= "Reply-to: ayuda@biblioteca.com\r\n";
 
 				$asunto = "Cambiar clave de acceso";
-				//var_dump($msg);
-				//return true;
-				return @mail($email,$asunto,$msg, $headers);
+				Helper::mostrar($msg);
+				return true;
+				//return @mail($email,$asunto,$msg, $headers);
 			} else {
 			}
 		}
