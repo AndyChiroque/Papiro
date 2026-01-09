@@ -80,9 +80,25 @@ class Login extends Controlador
 		];
 		$this->vista("loginOlvidoVista",$datos);
 	}
-	public function cambiarclave($id='')
+	public function cambiarClave($id='')
 	{
-		Helper::mostrar(Helper::Desencriptar($id));
+		$id=Helper::Desencriptar($id);
+		$errores = [];
+		if ($_SERVER['REQUEST_METHOD']=="POST") {
+			$clave = $_POST['clave']??"";
+			$verifica = $_POST['Verifica']??"";
+			$id = $_POST['id']??"";
+			Helper::mostrar($id." ".$clave." ".$verifica);
+			
+		}
+		$datos = [
+			"titulo" => "Cambio de clave de acceso",
+			"subtitulo" => "Cambiar Contraseña",
+			"errores" => $errores,
+			"data" => $id
+
+		];
+		$this->vista("loginCambiarVista",$datos);
 	}
 }
 

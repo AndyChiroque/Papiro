@@ -29,7 +29,7 @@ class LoginModelo
 				$id = Helper::Encriptar($data["id"]);
 				//
 				$msg = "Entra a la siguiente liga para cambiar tu clave de acceso al sistema de biblioteca...<br>";
-				$msg.= "<a href='".RUTA."login/cambiarclave/".$id."'>Cambiar tu clave de acceso</a>";
+				$msg.= "<a href='".RUTA."login/cambiarClave/".$id."'>Cambiar tu clave de acceso</a>";
 
 				$headers = "MIME-Version: 1.0\r\n"; 
 				$headers.= "Content-type:text/html; charset=UTF-8\r\n"; 
