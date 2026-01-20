@@ -85,11 +85,54 @@ class Login extends Controlador
 		$id=Helper::Desencriptar($id);
 		$errores = [];
 		if ($_SERVER['REQUEST_METHOD']=="POST") {
-			$clave = $_POST['clave']??"";
-			$verifica = $_POST['Verifica']??"";
+			$clave1 = $_POST['clave']??"";
+			$clave2 = $_POST['Verifica']??"";
 			$id = $_POST['id']??"";
-			Helper::mostrar($id." ".$clave." ".$verifica);
-			
+			//
+			if(empty($clave1)){
+				array_push($errores,"La clave de acceso es requerida.");
+			}
+			if(empty($clave2)){
+				array_push($errores,"La clave de acceso de verificacion es requerida.");
+			}
+			if(($clave1!=$clave2)){
+				array_push($errores,"La clave de acceso no coinciden.");
+			}
+			if(count($errores)==0){
+				$clave = hash_hmac("sha256",$clave1,CLAVE);
+				$data = [ "clave"=> $clave,"id"=>$id];
+				Helper::mostrar($data);
+				if($this->modelo->actualizarClaveAcceso($data)){
+					$datos = [
+							"titulo" => "Cambio de clave de acceso",
+							"menu" => false,
+							"errores" => [],
+							"data" => [],
+							"subtitulo" => "Cambio de clave de acceso",
+							"texto" => "La clave de acceso se ha cambiado correctamente.",
+							"color" => "alert-success",
+							"url" => "login",
+							"colorBoton" => "btn-success",
+							"textoBoton" => "Regresar"
+							];
+						$this->vista("mensaje",$datos);
+				}else{
+					$datos = [
+							"titulo" => "Cambio de clave de acceso",
+							"menu" => false,
+							"errores" => [],
+							"data" => [],
+							"subtitulo" => "Cambio de clave de acceso",
+							"texto" => "Error al cambiar la clave de acceso.",
+							"color" => "alert-danger",
+							"url" => "login",
+							"colorBoton" => "btn-danger",
+							"textoBoton" => "Regresar"
+							];
+						$this->vista("mensaje",$datos);
+				}
+				exit;
+			}
 		}
 		$datos = [
 			"titulo" => "Cambio de clave de acceso",
