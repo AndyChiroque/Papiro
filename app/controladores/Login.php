@@ -101,7 +101,7 @@ class Login extends Controlador
 			if(count($errores)==0){
 				$clave = hash_hmac("sha256",$clave1,CLAVE);
 				$data = [ "clave"=> $clave,"id"=>$id];
-				Helper::mostrar($data);
+				//Helper::mostrar($data);
 				if($this->modelo->actualizarClaveAcceso($data)){
 					$datos = [
 							"titulo" => "Cambio de clave de acceso",

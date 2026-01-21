@@ -10,6 +10,15 @@ class LoginModelo
 	{
 		$this->db = new MySQLdb();
 	}
+	public function actualizarClaveAcceso($data='')
+	{
+		if($data!="")
+			{
+				$sql = "UPDATE usuarios SET clave=:clave WHERE id=:id";
+				return $this->db->queryNoSelect($sql,$data);
+			}
+			return false;
+	}
 
 	public function buscarCorreo($usuario='')
 	{

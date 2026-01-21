@@ -23,11 +23,17 @@ class MySQLdb {
         } catch (Exception $e) {
             die("Error de conexión: " . $e->getMessage());
         }
-}
+    }
+
     public function query($sql=""){
         if(empty($sql)) return false;
         $stmt = $this->conn->query($sql);
         return $stmt->fetch();
+    }
+
+    //Para consultas de inserción, actualización y eliminación
+    public function queryNoSelect($sql,$data){
+        return $this->conn->prepare($sql)->execute($data);
     }
 }
 ?>
