@@ -1,5 +1,5 @@
 <?php include("encabezado.php"); ?>
-                        <form action="#" method="post">
+                        <form action="<?php echo RUTA; ?>login/verificar" method="post">
                             <h2 class="text-center">Login</h2>
                             <div class="form-group text-left">
                                     <label for="usuario">* Usuario</label>

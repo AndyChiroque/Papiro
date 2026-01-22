@@ -143,6 +143,53 @@ class Login extends Controlador
 		];
 		$this->vista("loginCambiarVista",$datos);
 	}
+	public function verificar()
+	{
+		$errores = [];
+		if ($_SERVER["REQUEST_METHOD"]=="POST") {
+			$id = $_POST["id"]??"";
+			$usuario = $_POST["usuario"]??"";
+			$clave = $_POST["clave"]??"";
+			if (empty($clave)) {
+				array_push($errores, "La clave de acceso es requerida.");
+			}
+			if (empty($usuario)) {
+				array_push($errores, "El usuario es requerido.");
+			}
+			if (count($errores)==0) {
+				$clave = hash_hmac("sha256",$clave,CLAVE);
+				$data = $this->modelo->buscarCorreo($usuario);
+				if(isset($data) && $data["clave"]==$clave){
+					//$sesion=new Sesion();
+					//$sesion->iniciarLogin($data);
+					//header("location:".RUTA."tablero")
+					Helper::mostrar("Bienvenido " . $usuario);
+				} else {
+					$datos = [
+						"titulo" => "Entrada a la biblioteca",
+						"menu" => false,	
+						"errores"	=> [],
+						"data" => [],
+						"subtitulo" => "Sistema de biblioteca",
+						"texto" => "Usuario o clave de acceso incorrectos.",
+						"color" => "alert-danger",
+						"url" => "login",
+						"colorBoton" => "btn-danger",
+						"textoBoton" => "Regresar"
+					];
+					$this->vista("mensaje",$datos);
+				}
+				exit;
+			}
+
+		}
+		$datos = [
+			"titulo" => "Entrada a la biblioteca",
+			"subtitulo" => "Sistema de biblioteca",
+			"errores"	=> $errores		
+		];
+		$this->vista("loginCararulaVista",$datos);
+	}
 }
 
 ?>
