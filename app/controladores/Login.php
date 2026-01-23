@@ -160,10 +160,10 @@ class Login extends Controlador
 				$clave = hash_hmac("sha256",$clave,CLAVE);
 				$data = $this->modelo->buscarCorreo($usuario);
 				if(isset($data) && $data["clave"]==$clave){
-					//$sesion=new Sesion();
-					//$sesion->iniciarLogin($data);
+					$sesion=new Sesion();
+					$sesion->iniciarLogin($data);
 					//header("location:".RUTA."tablero")
-					Helper::mostrar("Bienvenido " . $usuario);
+					Helper::mostrar($sesion->getLogin());
 				} else {
 					$datos = [
 						"titulo" => "Entrada a la biblioteca",
