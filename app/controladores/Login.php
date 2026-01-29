@@ -8,6 +8,10 @@ class Login extends Controlador
 	
 	function __construct()
 	{
+		$this->sesion = new Sesion();
+		if ($this->sesion->getLogin()) {
+			$this->sesion->finalizarLogin();
+		}
 		$this->modelo = $this->modelo("LoginModelo");
 	}
 
@@ -162,8 +166,8 @@ class Login extends Controlador
 				if(isset($data) && $data["clave"]==$clave){
 					$sesion=new Sesion();
 					$sesion->iniciarLogin($data);
-					//header("location:".RUTA."tablero")
-					Helper::mostrar($sesion->getLogin());
+					header("location:".RUTA."tablero");
+					//Helper::mostrar($sesion->getLogin());
 				} else {
 					$datos = [
 						"titulo" => "Entrada a la biblioteca",
