@@ -36,6 +36,29 @@ class Login extends Controlador
 		$this->vista("loginCaratulaVista",$datos);
 	}
 
+	public function registrar(){
+	   //Definir los arreglos
+	    $data = array();
+	    $errores = array(); 
+	    if(!empty($errores) || $_SERVER['REQUEST_METHOD']!="POST" ){
+	    	//Vista Auto registro
+	    	$genero = $this->modelo->getCatalogo("genero");
+		    $datos = [
+		      "titulo" => "Auto registro de un usuario",
+		      "subtitulo" => "Auto registro de un usuario",
+		      "activo" => "login",
+		      "menu" => false,
+		      "admon" => "admon",
+		      "genero" => $genero,
+		      "estado" => USUARIO_INACTIVO,
+		      "errores" => $errores,
+		      "data" => []
+		    ];
+		    $this->vista("loginRegistrarUsuarioVista",$datos);
+	    }
+  	}
+	
+	
 	public function olvidoVerificar()
 	{
 		$errores = [];

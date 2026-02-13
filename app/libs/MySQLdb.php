@@ -25,11 +25,28 @@ class MySQLdb {
         }
     }
 
+    //para consultas de selección
     public function query($sql=""){
         if(empty($sql)) return false;
         $stmt = $this->conn->query($sql);
         return $stmt->fetch();
     }
+
+    //para consultas de selección
+    public function querySelect($sql='')
+	{
+		if (empty($sql)) return false;
+		$data = [];
+		$stmt = $this->conn->query($sql);
+		$row = $stmt->fetch(PDO::FETCH_ASSOC);
+		   do {
+		       array_push($data,$row);
+		   } while ($row = $stmt->fetch(PDO::FETCH_ASSOC));
+		if (!$data[0]) {
+			$data = [];
+		}
+		return $data;
+	}
 
     //Para consultas de inserción, actualización y eliminación
     public function queryNoSelect($sql,$data){

@@ -1,5 +1,5 @@
 <?php include("encabezado.php"); ?>
-                        <form action="<?php echo RUTA; ?>login/verificar" method="post">
+                        <form action="<?php print RUTA; ?>login/verificar" method="post">
                             <h2 class="text-center">Login</h2>
                             <div class="form-group text-left">
                                     <label for="usuario">* Usuario</label>
@@ -19,7 +19,7 @@
                             <div class="form-group text-left">
                                     <button class="btn btn-primary" type="submit">Enviar</button>
                             </div>
-                            <a href="<?php echo RUTA; ?>login/olvidoVerificar">¿Olvidaste tu clave de acceso?</a><br>
-                            <a href="#">¿No tienes cuenta? Regístrate</a>
+                            <a href="<?php print RUTA; ?>login/olvidoVerificar">¿Olvidaste tu clave de acceso?</a><br>
+                            <a href="<?php print RUTA; ?>login/registrar">¿No tienes cuenta? Regístrate</a>
                         </form>
 <?php include("piePagina.php"); ?>
