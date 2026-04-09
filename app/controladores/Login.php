@@ -53,8 +53,68 @@ class Login extends Controlador
 			$telefono = Helper::cadena($_POST['telefono'] ?? "");
 			$fechaNacimiento = Helper::cadena($_POST['fechaNacimiento'] ?? "");
 			$estado = USUARIO_INACTIVO;
-			Helper::mostrar($_POST);
+			//
+			//validamos la info
+			//
 
+			// 1. Validar formato (usando tu clase Helper)
+			if (Helper::correo($correo) == false) {
+				array_push($errores, "El correo no tiene un formato correcto.");
+			}
+
+			// 2. Validar que no esté vacío
+			if (empty($correo)) {
+				array_push($errores, "El correo es requerido.");
+			}
+
+			// 3. Validar unicidad (Consulta al Modelo)
+			if ($this->modelo->buscarCorreo($correo)) {
+				array_push($errores, "El correo ya existe en la base de datos.");
+			}
+			
+			// 1. Validar formato del segundo campo
+			if (Helper::correo($verificarCorreo) == false) {
+				array_push($errores, "El correo de verificación no tiene un formato correcto.");
+			}
+
+			// 2. Validar que ambos campos sean iguales
+			if ($correo != $verificarCorreo) {
+				array_push($errores, "Los correos no coinciden.");
+			}
+			/*--------------------------------------------------*/
+			if (empty($nombre)) {
+				array_push($errores, "El nombre es requerido.");
+			}
+			// 1. Validar Apellido Paterno
+			if (empty($apellidoPaterno)) {
+				array_push($errores, "El apellido paterno es requerido.");
+			}
+
+			// 2. Validar Formato de Fecha (usando tu Helper)
+			if (Helper::fecha($fechaNacimiento) == false) {
+				array_push($errores, "El formato de la fecha de nacimiento no es correcto.");
+			}
+
+			/*--------------------------------------------------*/
+			// 3. Control de Errores Final
+			if (empty($errores)) { 
+			// Crear arreglo de datos
+			//
+			$clave = "12345"; //Helper::generarClave(10);
+			$data = [
+		         "idTipoUsuario"=>$idTipoUsuario,
+		         "correo"=> $correo,
+		         "nombre"=> $nombre,
+		         "clave"=>$clave,
+		         "apellidoPaterno"=> $apellidoPaterno,
+		         "apellidoMaterno"=> $apellidoMaterno,
+		         "genero"=> $genero,
+		         "telefono"=> $telefono,
+		         "fechaNacimiento"=> $fechaNacimiento,
+		         "estado"=> USUARIO_INACTIVO
+		    ];     
+		    Helper::mostrar($data);
+	      }
 		}
 	    if(!empty($errores) || $_SERVER['REQUEST_METHOD']!="POST" ){
 	    	//Vista Auto registro
@@ -73,6 +133,7 @@ class Login extends Controlador
 		    $this->vista("loginRegistrarUsuarioVista",$datos);
 	    }
   	}
+	
 	
 	
 	public function olvidoVerificar()
@@ -255,7 +316,7 @@ class Login extends Controlador
 			"subtitulo" => "Sistema de biblioteca",
 			"errores"	=> $errores		
 		];
-		$this->vista("loginCararulaVista",$datos);
+		$this->vista("loginCaratulaVista",$datos);
 	}
 }
 
